@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ISOPATH=$1
+DOCKERTAG=$2
+
+mkdir rootfs
+mkdir unsquashfs
+mkdir img
+
+sudo mount -o loop $ISOPATH rootfs/
+sudo unsquashfs -f -d unsquashfs/ rootfs/LiveOS/squashfs.img
+sudo mount -t auto -o loop unsquashfs/LiveOS/rootfs.img img
+sudo tar -C img -c . | sudo docker import - $DOCKERTAG
+
+sudo umount img
+sudo rm -Rf img
+sudo rm -Rf unsquashfs
+sudo umount rootfs
+sudo rm -Rf rootfs
