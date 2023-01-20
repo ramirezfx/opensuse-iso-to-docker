@@ -1,6 +1,6 @@
 # opensuse-iso-to-docker
 
-This script imports an LIVECD-iso from an opensuse live-cd ISO to docker.
+This script imports a LIVECD-iso from an opensuse live-cd ISO to docker.
 
 ## Installation
 If the package git is not installed:
